@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking Application</title>
+    <style>
+        /* Styles from the previous code */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Smart Parking Application</h1>
+    </header>
+
+    <main>
+        <section class="calculator-section">
+            <h2>Calculate Latency</h2>
+            <button id="calculateBtn">Calculate Latency</button>
+            <p id="latencyResult">Latency: <span id="latencyValue">-</span></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Smart Parking Application</p>
+    </footer>
+
+    <script>
+        document.getElementById('calculateBtn').addEventListener('click', function() {
+            // Make an AJAX request to the server-side endpoint to calculate latency
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/calculateLatency', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var latency = xhr.responseText;
+                    document.getElementById('latencyValue').textContent = latency + ' ms';
+                } else {
+                    console.error('Request failed. Status: ' + xhr.status);
+                }
+            };
+            xhr.send();
+        });
+    </script>
+</body>
+</html>
